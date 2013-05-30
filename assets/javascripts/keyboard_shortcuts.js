@@ -78,7 +78,7 @@ var KsDispatcher = Class.create({
 
   go: function(url) {
     if (!url.match(/^http/) && !url.match(/^\//)) {
-      url = '/' + url;
+      url = "/redmine/" + url;
     }
     document.location.href = url;
   }
