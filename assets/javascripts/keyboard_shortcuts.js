@@ -121,7 +121,7 @@ var KsDispatcher = Class.extend({
 
   go: function(url) {
     if (!url.match(/^http/) && !url.match(/^\//)) {
-      url = '/' + url;
+      url = /redmine/ + url;
     }
     document.location.href = url;
   }
@@ -187,7 +187,7 @@ var KsGlobalManager = Class.extend({
     var choice = $('#project-selector').val();
     $.each(ks_projects, function(i, project) {
       if (project.project.identifier == choice) {
-        ks_dispatcher.go('projects/' + choice);
+        ks_dispatcher.go('/redmine/projects/' + choice);
       }
     });
   },
@@ -379,23 +379,23 @@ var KsListManager = Class.extend({
 
   move: function() {
     if (this.getChosenIds().length > 0) {
-      ks_dispatcher.go('issues/move/new?' + this.getIdString());
+      ks_dispatcher.go('/redmine/issues/move/new?' + this.getIdString());
     }
   },
 
   edit: function() {
     var ids = this.getChosenIds();
     if (ids.length == 1) {
-      ks_dispatcher.go('issues/' + ids[0] + '/edit');
+      ks_dispatcher.go('/redmine/issues/' + ids[0] + '/edit');
     }
     else if (ids.length > 1) {
-      ks_dispatcher.go('issues/bulk_edit?' + this.getIdString());
+      ks_dispatcher.go('/redmine/issues/bulk_edit?' + this.getIdString());
     }
   },
 
   open: function() {
     var cur_id = this.issues[this.current_selected].id.replace('issue-', '');
-    ks_dispatcher.go('issues/' + cur_id);
+    ks_dispatcher.go('/redmine/issues/' + cur_id);
   },
 
 });
@@ -473,7 +473,7 @@ var KsIssueManager = Class.extend({
       this.selectIssue(this.current_selected + 1);
     }
     else if(this.next) {
-      ks_dispatcher.go('/issues/' + this.next.id);
+      ks_dispatcher.go(ks_relative_url + '/issues/' + this.next.id);
     }
   },
 
@@ -482,7 +482,7 @@ var KsIssueManager = Class.extend({
       this.selectIssue(this.current_selected - 1);
     }
     else if(this.previous) {
-      ks_dispatcher.go('/issues/' + this.previous.id);
+      ks_dispatcher.go('/redmine/issues/' + this.previous.id);
     }
   },
 
