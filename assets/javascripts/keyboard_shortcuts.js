@@ -635,5 +635,6 @@ var KsDialog = Class.extend({
 var getDisplayKey = function(e) {
   if (e.keyCode) keycode = e.keyCode;
   else keycode = e.which;
+  if (e.ctrlKey) return null;
   return String.fromCharCode(keycode);
 }
