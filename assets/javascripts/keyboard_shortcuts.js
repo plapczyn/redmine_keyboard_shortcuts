@@ -152,7 +152,7 @@ var KsGlobalManager = Class.extend({
       },
       h: {
         press: this.viewHelp.bind(this),
-        description: "See all available shortcuts",
+        description: "See all available shortcuts (esc to close)",
         allowInDialog: true
       }
     };
