@@ -83,6 +83,10 @@ var KsDispatcher = Class.extend({
   },
 
   keypress: function(event) {
+    /* Ignore keypress if CTRL is pressed */
+    if (event.ctrlKey){
+      return false;
+    }
     // ignore keypress in elements
     var element;
     if (event.target) element = event.target;
@@ -635,6 +639,5 @@ var KsDialog = Class.extend({
 var getDisplayKey = function(e) {
   if (e.keyCode) keycode = e.keyCode;
   else keycode = e.which;
-  if (e.ctrlKey) return null;
   return String.fromCharCode(keycode);
 }
